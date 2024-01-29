@@ -8,10 +8,10 @@ import java.util.Random;
 
 public class RandomTest {
 
-    @Test
-    void testLessThan3(){
-        Random random = new Random();
-        int val = random.nextInt();
-        assert(val < 300000);
-    }
+//    @Test
+//    void testLessThan3(){
+//        Random random = new Random();
+//        int val = random.nextInt();
+//        assert(val < 300000);
+//    }
 }

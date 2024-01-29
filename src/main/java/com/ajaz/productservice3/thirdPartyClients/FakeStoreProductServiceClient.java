@@ -22,21 +22,27 @@ public class FakeStoreProductServiceClient{
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private String requestUrl = "https://fakestoreapi.com/products/{id}";
+//    private String requestUrl = "https://fakestoreapi.com/products/{id}";
+
+//    @Value("${fakestore.api.url}")
 
     @Value("${fakestore.api.url}")
     private String fakeStoreUrl;
 
+//    @Value("${fakestore.products.url}")
+
     @Value("${fakestore.products.url}")
-    private String productsUrl;
-//    private String requestUrl = null;
+    private String productsUrl = null;
+    private String requestUrl = null;
 
-    private String productRequestsBaseUrl = "https://fakestoreapi.com/products";
+    private String productRequestsBaseUrl = null;
 
-    public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder){
+    public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder,
+                                         @Value("${fakestore.api.url}") String fakeStoreUrl,
+                                         @Value("${fakestore.products.url}") String productsUrl){
         this.restTemplateBuilder = restTemplateBuilder;
-//        requestUrl = fakeStoreUrl + productsUrl + "/{id}";
-//        productRequestsBaseUrl = "https://fakestoreapi.com/products";;
+        this.requestUrl = fakeStoreUrl + productsUrl + "/{id}";
+        this.productRequestsBaseUrl = fakeStoreUrl + productsUrl;
     }
 
     public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
